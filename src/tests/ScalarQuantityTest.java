@@ -7,28 +7,28 @@ import static org.junit.Assert.assertTrue;
 
 public class ScalarQuantityTest {
 
-	private ScalarQuantity ThirtyTwoFharaniet;
-	private ScalarQuantity TwoHundredTwelveFharaniet;
-	private ScalarQuantity HundredCelcius;
+	private ScalarQuantity thirtyTwoFharaniet;
+	private ScalarQuantity twoHundredTwelveFharaniet;
+	private ScalarQuantity hundredCelcius;
 
 	@Before
 	public void setUp() {
-		ThirtyTwoFharaniet = ScalarQuantity.fharaniet(32);
-		TwoHundredTwelveFharaniet = ScalarQuantity.fharaniet(212);
-		HundredCelcius = ScalarQuantity.celcius(100);
+		thirtyTwoFharaniet = ScalarQuantity.fharaniet(32);
+		twoHundredTwelveFharaniet = ScalarQuantity.fharaniet(212);
+		hundredCelcius = ScalarQuantity.celcius(100);
 	}
 
 	@Test
 	public void checkForSameUnit() {
-		ScalarQuantity ZeroCelcius = ScalarQuantity.celcius(0);
-		assertTrue(ZeroCelcius.equals(ScalarQuantity.celcius(0)));
+		ScalarQuantity zeroCelcius = ScalarQuantity.celcius(0);
+		assertTrue(zeroCelcius.equals(ScalarQuantity.celcius(0)));
 	}
 
 	@Test
 	public void checkEqualityOfTemperatureUnits() {
-		ScalarQuantity ZeroCelcius = ScalarQuantity.celcius(0);
-		assertTrue(ThirtyTwoFharaniet.equals(ZeroCelcius));
-		assertTrue(TwoHundredTwelveFharaniet.equals(HundredCelcius));
-		assertTrue(HundredCelcius.equals(TwoHundredTwelveFharaniet));
+		ScalarQuantity zeroCelcius = ScalarQuantity.celcius(0);
+		assertTrue(thirtyTwoFharaniet.equals(zeroCelcius));
+		assertTrue(twoHundredTwelveFharaniet.equals(hundredCelcius));
+		assertTrue(hundredCelcius.equals(twoHundredTwelveFharaniet));
 	}
 }

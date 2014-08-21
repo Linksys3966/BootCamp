@@ -19,9 +19,9 @@ public class ScalarQuantity {
 	public boolean equals(ScalarQuantity other) {
 		if (!this.unit.compareTypes(other.unit))
 			return false;
-		if (other.unit.equals(this.unit))
-			return other.amount == this.amount;
-		return other.convertTo(this.unit) == this.amount;
+		if (other.unit.equals(unit))
+			return other.amount == amount;
+		return other.convertTo(unit) == amount;
 	}
 
 	protected double convertTo(Unit unit) {

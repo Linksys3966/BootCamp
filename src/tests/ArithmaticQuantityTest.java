@@ -7,57 +7,57 @@ import static org.junit.Assert.*;
 // job: understands comparison of units
 public class ArithmaticQuantityTest {
 
-	private ArithmeticQuantity FourFeet;
-	private ArithmeticQuantity FourTbsp;
-	private ArithmeticQuantity EightOz;
-	private ArithmeticQuantity FourtyEightYards;
+	private ArithmeticQuantity fourFeet;
+	private ArithmeticQuantity fourTbsp;
+	private ArithmeticQuantity eightOz;
+	private ArithmeticQuantity fourtyEightYards;
 
 	@Before
 	public void setUp() {
-		FourFeet = ArithmeticQuantity.feet(4);
-		FourTbsp = ArithmeticQuantity.tbsp(4);
-		EightOz = ArithmeticQuantity.ounce(8);
-		FourtyEightYards = ArithmeticQuantity.inch(48);
+		fourFeet = ArithmeticQuantity.feet(4);
+		fourTbsp = ArithmeticQuantity.tbsp(4);
+		eightOz = ArithmeticQuantity.ounce(8);
+		fourtyEightYards = ArithmeticQuantity.inch(48);
 	}
 
 	@Test
 	public void checkForSameUnit() {
-		assertTrue(FourFeet.equals(ArithmeticQuantity.feet(4)));
-		assertTrue(FourTbsp.equals(ArithmeticQuantity.tbsp(4)));
+		assertTrue(fourFeet.equals(ArithmeticQuantity.feet(4)));
+		assertTrue(fourTbsp.equals(ArithmeticQuantity.tbsp(4)));
 	}
 
 	@Test
 	public void checkEqualityOfLengthUnits() {
-		ArithmeticQuantity FourtyEightYards = ArithmeticQuantity.yards(48.0);
-		ArithmeticQuantity OneFortyFourFeet = ArithmeticQuantity.feet(144.0);
-		assertTrue(FourtyEightYards.equals(OneFortyFourFeet));
-		assertTrue(FourFeet.equals(this.FourtyEightYards));
+		ArithmeticQuantity fourtyEightYards = ArithmeticQuantity.yards(48.0);
+		ArithmeticQuantity oneFortyFourFeet = ArithmeticQuantity.feet(144.0);
+		assertTrue(fourtyEightYards.equals(oneFortyFourFeet));
+		assertTrue(fourFeet.equals(this.fourtyEightYards));
 	}
 
 	@Test
 	public void checkEqualityOfWeightUnits() {
-		ArithmeticQuantity FourtyEight_yards = ArithmeticQuantity.yards(48);
-		ArithmeticQuantity OneCup = ArithmeticQuantity.cup(1);
-		ArithmeticQuantity TwelveTsp = ArithmeticQuantity.tsp(12);
-		assertTrue(FourTbsp.equals(TwelveTsp));
-		assertTrue(EightOz.equals(OneCup));
-		assertFalse(EightOz.equals(FourtyEight_yards));
+		ArithmeticQuantity fourtyEight_yards = ArithmeticQuantity.yards(48);
+		ArithmeticQuantity oneCup = ArithmeticQuantity.cup(1);
+		ArithmeticQuantity twelveTsp = ArithmeticQuantity.tsp(12);
+		assertTrue(fourTbsp.equals(twelveTsp));
+		assertTrue(eightOz.equals(oneCup));
+		assertFalse(eightOz.equals(fourtyEight_yards));
 	}
 
 	@Test(expected = UnitMismatchException.class)
 	public void checkForAdditionOfArithemeticUnits() throws UnitMismatchException {
-		ArithmeticQuantity TwoInch = ArithmeticQuantity.inch(2);
-		assertEquals(true, TwoInch.add(TwoInch).equals(ArithmeticQuantity.inch(4.0)));
-		assertEquals(true, FourFeet.add(FourFeet).equals(ArithmeticQuantity.feet(8.0)));
-		assertEquals(true, EightOz.add(FourTbsp).equals(ArithmeticQuantity.ounce(10.0)));
-		assertEquals(true, FourFeet.add(ArithmeticQuantity.inch(12)).equals(ArithmeticQuantity.feet(5)));
-		assertEquals(true, EightOz.add(FourFeet).equals(new UnitMismatchException("Invalid Addition")));
+		ArithmeticQuantity twoInch = ArithmeticQuantity.inch(2);
+		assertEquals(true, twoInch.add(twoInch).equals(ArithmeticQuantity.inch(4.0)));
+		assertEquals(true, fourFeet.add(fourFeet).equals(ArithmeticQuantity.feet(8.0)));
+		assertEquals(true, eightOz.add(fourTbsp).equals(ArithmeticQuantity.ounce(10.0)));
+		assertEquals(true, fourFeet.add(ArithmeticQuantity.inch(12)).equals(ArithmeticQuantity.feet(5)));
+		assertEquals(true, eightOz.add(fourFeet).equals(new UnitMismatchException("Invalid Addition")));
 	}
 
 	@Test
 	public void checkExceptionMessageForRaisedExceptions() throws UnitMismatchException {
 		try {
-			EightOz.add(FourFeet);
+			eightOz.add(fourFeet);
 		} catch (UnitMismatchException exceptionMessage) {
 			assertThat(exceptionMessage.getMessage(), is("Invalid Comparison"));
 		}
@@ -65,8 +65,8 @@ public class ArithmaticQuantityTest {
 
 	@Test
 	public void checkEqualityofDifferentArithmeticUnits() throws UnitMismatchException {
-		ArithmeticQuantity TwelveInch = ArithmeticQuantity.inch(12);
-		ArithmeticQuantity TwoFeet = ArithmeticQuantity.feet(2);
-		assertEquals(true, TwelveInch.add(TwelveInch).equals(TwoFeet));
+		ArithmeticQuantity twelveInch = ArithmeticQuantity.inch(12);
+		ArithmeticQuantity twoFeet = ArithmeticQuantity.feet(2);
+		assertEquals(true, twelveInch.add(twelveInch).equals(twoFeet));
 	}
 }
