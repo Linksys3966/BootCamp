@@ -1,53 +1,46 @@
-/**
- * Created by vivekpatil on 8/20/14.
- */
+//Job: Understands the count for each arithemetic Item
 public class ArithmeticQuantity extends ScalarQuantity {
 
 	private ArithmeticQuantity(double amount, Unit unit) {
 		super(amount, unit);
 	}
 
-	public static ArithmeticQuantity inch(double amount) {
+	protected static ArithmeticQuantity inch(double amount) {
 		return new ArithmeticQuantity(amount, Unit.INCH);
 	}
 
-	public static ArithmeticQuantity feet(double amount) {
+	protected static ArithmeticQuantity feet(double amount) {
 		return new ArithmeticQuantity(amount, Unit.FEET);
 	}
 
-	public static ArithmeticQuantity yards(double amount) {
+	protected static ArithmeticQuantity yards(double amount) {
 		return new ArithmeticQuantity(amount, Unit.YARD);
 	}
 
-	public static ArithmeticQuantity ounce(double amount) {
+	protected static ArithmeticQuantity ounce(double amount) {
 		return new ArithmeticQuantity(amount, Unit.OZ);
 	}
 
-	public static ArithmeticQuantity tsp(double amount) {
+	protected static ArithmeticQuantity tsp(double amount) {
 		return new ArithmeticQuantity(amount, Unit.TSP);
 	}
 
-	public static ArithmeticQuantity tbsp(double amount) {
+	protected static ArithmeticQuantity tbsp(double amount) {
 		return new ArithmeticQuantity(amount, Unit.TBSP);
 	}
 
-	public static ArithmeticQuantity cup(double amount) {
+	protected static ArithmeticQuantity cup(double amount) {
 		return new ArithmeticQuantity(amount, Unit.CUP);
 	}
 
-	public ScalarQuantity add(ScalarQuantity other) throws UnitMismatchException, NotAdditiveQuantityException {
+	protected ArithmeticQuantity add(ArithmeticQuantity other) throws UnitMismatchException {
 
-		if (!super.unit.isScalarUnit()) {
-			if (!this.unit.compareTypes(other.unit))
-				throw new UnitMismatchException("Invalid Comparison");
-			if (other.unit.equals(this.unit))
-				return new ScalarQuantity(other.amount + this.amount, this.unit);
-			else {
-				ScalarQuantity convertedFirstQuantity = other.convertTo();
-				ScalarQuantity convertedSecondQuantity = this.convertTo();
-				return new ScalarQuantity(convertedFirstQuantity.amount + convertedSecondQuantity.amount, convertedFirstQuantity.unit);
-			}
+		if (!this.unit.compareTypes(other.unit))
+			throw new UnitMismatchException("Invalid Comparison");
+		if (!other.unit.equals(this.unit)) {
+			double convertedSecondQuantity = other.convertTo(this.unit);
+			return new ArithmeticQuantity(convertedSecondQuantity + this.amount, this.unit);
 		}
-		throw new NotAdditiveQuantityException("Not Additive Quantities");
+		return new ArithmeticQuantity(other.amount + this.amount, this.unit);
 	}
 }

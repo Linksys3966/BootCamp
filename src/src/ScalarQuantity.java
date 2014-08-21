@@ -1,4 +1,4 @@
-//Job: understands the count for each item
+//Job: understands the count for each scalar item
 public class ScalarQuantity {
 	protected Unit unit;
 	protected double amount;
@@ -21,11 +21,10 @@ public class ScalarQuantity {
 			return false;
 		if (other.unit.equals(this.unit))
 			return other.amount == this.amount;
-		return other.convertTo().amount == this.convertTo().amount;
+		return other.convertTo(this.unit) == this.amount;
 	}
 
-	protected ScalarQuantity convertTo() {
-		Unit unit = this.unit.getBaseUnit();
-		return new ScalarQuantity(this.unit.convertTo(this.amount), unit);
+	protected double convertTo(Unit unit) {
+		return this.unit.convertToResultUnit(this.amount, unit);
 	}
 }
