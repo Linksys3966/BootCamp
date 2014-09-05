@@ -1,7 +1,7 @@
 //Job: understands the count for each scalar item
 public class ScalarQuantity {
 	protected Unit unit;
-	protected double amount;
+	public  double amount;
 
 	protected ScalarQuantity(double amount, Unit unit) {
 		this.unit = unit;
